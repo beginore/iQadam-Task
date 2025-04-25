@@ -181,3 +181,29 @@ Response (201 Created):
   "message": "Student enrolled successfully"
 }
 ```
+
+### Used technologies
+#### Backend
+- **Go 1.21+** - Core programming language
+- **Gin** - High-performance HTTP web framework
+- **JWT** - JSON Web Tokens for authentication
+- **BCrypt/Argon2** - Password hashing algorithms
+
+#### Database
+- **PostgreSQL 15+** - Primary relational database
+- **golang-migrate** - Database migration tool
+- **pq** - PostgreSQL driver for Go
+
+### Libraries
+- **godotenv** - Environment variables loader
+- **validator** - Data validation library
+- **zap** - Structured logging
+
+## 📬 Contact Information
+
+### Project Maintainer
+- **Name**: Terekbayev Shynggys
+- **Email**: [cterekbaev@gmail.com]
+- **Phone**: [+7 (747) 431-8380](tel:+15551234567)
+- **Telegram**: [@asaksa](https://t.me/johndoe)
+- **GitHub**: [@beginore](https://github.com/johndoe)
