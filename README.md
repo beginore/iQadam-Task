@@ -12,7 +12,7 @@ REST API University Management System with JWT-authentication and RBAC (ADMIN/TE
 ### Requirements
 - Go 1.21+
 - PostgreSQL 15+
--  `migrate` ([установка](https://github.com/golang-migrate/migrate))
+-  `migrate` ([setup](https://github.com/golang-migrate/migrate))
 
 ### Project setup
 
