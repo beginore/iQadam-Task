@@ -163,8 +163,33 @@ Response (200 OK):
    }
 ]
 ```
+### 7. Update Courses
+Endpoint: PATCH `/courses/{id}`
+Description: Update course.
+Roles Allowed: ADMIN, TEACHER
+Request Body:
+```json
+{
+   "title": "Advanced Mathematics",
+   "description": "Master NOT calculus and linear algebra",
+   "teacher_id": 2
+}
+```
+Response (200 OK):
+```json
+{
+  "title": "Advanced Mathematics",
+  "description": "Master NOT calculus and linear algebra",
+  "teacher_id": 2
+}
+```
+### 8. Delete Courses
+Endpoint: DELETE `/courses/{id}`
+Description: Delete Course.
+Response (204 Deleted):
+
 ### Enrollment Management
-### 7. Enroll Student
+### 9. Enroll Student
 Endpoint: POST `/enroll`
 Description: Enroll student to course.
 Roles Allowed: ADMIN, TEACHER
@@ -181,7 +206,73 @@ Response (201 Created):
   "message": "Student enrolled successfully"
 }
 ```
+### 10. Delete enroll
+Endpoint: DELETE `/enroll`
+Description: Delete enrollment of student to course.
+Roles Allowed: ADMIN, TEACHER
+Request Body:
+```json
+{
+   "student_id": 3, //must be userID of user with role [STUDENT]
+   "course_id": 1
+}
+```
+Response (201 Created):
+```json
+{
+  "message": "Student enrolled successfully"
+}
+```
+### 11. Get student enrollments
+Endpoint: GET `/students/{student_id}/enrollments`
+Description: Get enrollments of given student.
+Roles Allowed: STUDENT(self),ADMIN, TEACHER(any)
 
+Response (200 OK):
+```json
+[
+  {
+    "id": 1,
+    "student_id": 123,
+    "course_id": 456
+  }
+]
+```
+### 12. Get course enrollments
+Endpoint: GET `/courses/{course_id}/enrollments`
+Description: Get enrollments of given course.
+Roles Allowed: TEACHER(any)
+
+Response (200 OK):
+```json
+[
+  {
+    "id": 1,
+    "student_id": 123,
+    "course_id": 456
+  }
+]
+```
+### 13. Get course enrollments
+Endpoint: GET `/enrollments`
+Description: Get enrollments of given course.
+Roles Allowed: ADMIN
+
+Response (200 OK):
+```json
+[
+  {
+    "id": 1,
+    "student_id": 123,
+    "course_id": 456
+  },
+  {
+    "id": 2,
+    "student_id": 124,
+    "course_id": 457
+  }
+]
+```
 ### Used technologies
 #### Backend
 - **Go 1.21+** - Core programming language

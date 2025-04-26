@@ -11,6 +11,7 @@ type EnrollmentRepository interface {
 	Delete(ctx context.Context, studentID, courseID int64) error
 	GetByStudent(ctx context.Context, studentID int64) ([]*model.Enrollment, error)
 	GetByCourse(ctx context.Context, courseID int64) ([]*model.Enrollment, error)
+	GetAll(ctx context.Context) ([]*model.Enrollment, error) // Добавляем метод
 }
 
 type enrollmentRepository struct {
@@ -69,6 +70,26 @@ func (r *enrollmentRepository) GetByCourse(ctx context.Context, courseID int64) 
 		var e model.Enrollment
 		e.CourseID = courseID
 		err := rows.Scan(&e.ID, &e.StudentID)
+		if err != nil {
+			return nil, err
+		}
+		enrollments = append(enrollments, &e)
+	}
+	return enrollments, nil
+}
+
+func (r *enrollmentRepository) GetAll(ctx context.Context) ([]*model.Enrollment, error) {
+	query := `SELECT id, student_id, course_id FROM enrollment`
+	rows, err := r.db.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var enrollments []*model.Enrollment
+	for rows.Next() {
+		var e model.Enrollment
+		err := rows.Scan(&e.ID, &e.StudentID, &e.CourseID)
 		if err != nil {
 			return nil, err
 		}

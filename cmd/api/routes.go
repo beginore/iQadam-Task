@@ -30,13 +30,17 @@ func (app *Application) routes() *gin.Engine {
 
 		// Courses
 		courseCtrl := controller.NewCourseController(app.courseService)
-		auth.POST("/courses", courseCtrl.CreateCourse).Use(middleware.RoleMiddleware("ADMIN", "TEACHER"))
 		auth.GET("/courses", courseCtrl.GetCourses)
+		auth.POST("/courses", courseCtrl.CreateCourse).Use(middleware.RoleMiddleware("ADMIN", "TEACHER"))
+		auth.PUT("/courses/:id", courseCtrl.UpdateCourse).Use(middleware.RoleMiddleware("ADMIN", "TEACHER"))
 		auth.DELETE("/courses/:id", courseCtrl.DeleteCourse).Use(middleware.RoleMiddleware("ADMIN"))
 
-		// Enrollment
 		enrollCtrl := controller.NewEnrollmentController(app.enrollmentService)
-		auth.POST("/enroll", enrollCtrl.EnrollStudent).Use(middleware.RoleMiddleware("ADMIN", "TEACHER"))
+		auth.POST("/enroll", enrollCtrl.EnrollStudent).Use(middleware.RoleMiddleware("STUDENT", "TEACHER"))
+		auth.DELETE("/enroll", enrollCtrl.UnenrollStudent).Use(middleware.RoleMiddleware("ADMIN", "TEACHER"))
+		auth.GET("/students/:student_id/enrollments", enrollCtrl.GetEnrollmentsByStudent)
+		auth.GET("/courses/:course_id/enrollments", enrollCtrl.GetEnrollmentsByCourse)
+		auth.GET("/enrollments", enrollCtrl.GetAllEnrollments).Use(middleware.RoleMiddleware("ADMIN"))
 	}
 
 	return r
