@@ -295,6 +295,6 @@ Response (200 OK):
 ### Project Maintainer
 - **Name**: Terekbayev Shynggys
 - **Email**: [cterekbaev@gmail.com]
-- **Phone**: [+7 (747) 431-8380](tel:+15551234567)
-- **Telegram**: [@asaksa](https://t.me/johndoe)
-- **GitHub**: [@beginore](https://github.com/johndoe)
+- **Phone**: [+7 (747) 431-8380](tel:+77474318380)
+- **Telegram**: [@Asaksa7](https://t.me/Asaksa7)
+- **GitHub**: [@beginore](beginore)
